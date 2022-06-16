@@ -1,14 +1,14 @@
 import React from "react";
-import List from "./List";
+import List from "./List.js";
 
-export default class UserLIsts extends React.Component{
+export default class UserLists extends React.Component{
     
-    state = { lists:null, loading: true }
+    state = { lists:[], loading: true}
 
     async componentDidMount(){
         const config = {
             headers: {
-                    'Content-Type': 'application/json'
+                'Content-Type':'application/json'
             }
         }
         config.headers['Authorization'] = 'Token 769ddbc5b731d3ea185e30256c4e23e5d18240dd';
@@ -16,15 +16,18 @@ export default class UserLIsts extends React.Component{
         var url = 'http://127.0.0.1:8000/list/';
         const response = await fetch(url, config);
         const data = await response.json();
-        console.log(data);
-        this.setState({lists:data, loading: false})
+        console.log(data.results);
+
+        this.setState({lists: data.results, loading: false})
     }
+
     render()
     {
+        const listApi = this.state.lists;
+
         return (
             <div>
-                <List listName={'minha lista'}/>
-                <List listName={'minha lista2'}/>
+                {listApi.map(list => <List key={list.id} listName={list.name}/>)}
             </div>  
         )
     }
