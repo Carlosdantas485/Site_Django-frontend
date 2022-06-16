@@ -1,6 +1,12 @@
 import React from "react";
 
-
 export default function Item(props){
-    return <li>Item description.:{ props.name } </li>
+    const status = props.status;
+    return <li>
+        { props.name } 
+        <br></br>
+            Status:{status ? 
+            <div>finalizado</div> : 
+            <div>nao finalizado</div>} 
+        </li>
 }

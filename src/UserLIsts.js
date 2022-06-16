@@ -1,5 +1,6 @@
 import React from "react";
 import List from "./List.js";
+import "./index.css"
 
 export default class UserLists extends React.Component{
     
@@ -26,8 +27,8 @@ export default class UserLists extends React.Component{
         const listApi = this.state.lists;
 
         return (
-            <div>
-                {listApi.map(list => <List key={list.id} listName={list.name}/>)}
+            <div id="view-list">
+                {listApi.map(list => <List key={list.id} listName={list.name} items={list.item_set}/>)}
             </div>  
         )
     }
