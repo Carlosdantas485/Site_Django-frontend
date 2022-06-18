@@ -36,6 +36,11 @@ constructor(props) {
     event.preventDefault();
   }
 
+  exit(){
+    localStorage.removeItem('token');
+    this.setState({token: null});
+  }
+
   render() {
     var token = localStorage.getItem('token');
     if(!token)
@@ -48,9 +53,14 @@ constructor(props) {
           </label>
           <input type="submit" value="Submit" />
         </form>
+       
       );
     else
-      return <UserLists/>
-    
+      return (
+        <div>
+          <UserLists/>
+          <button onClick={()=>this.exit()}>SAIR</button>
+        </div>
+      )
   }
 }
