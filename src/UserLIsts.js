@@ -13,22 +13,23 @@ export default class UserLists extends React.Component{
                 'Content-Type':'application/json'
             }
         }
-        config.headers['Authorization'] = 'Token ff36b6e43d15d51ac654a0a2f77746e9f92dc726';
+        /* coloca o espaco depois da palavra 'Token' */
+        config.headers['Authorization'] = 'Token ' + localStorage.getItem('token');
 
         var url = 'http://127.0.0.1:8000/list/';
         const response = await fetch(url, config);
         const data = await response.json();
-        console.log(data.results);
+        console.log(data);
 
-        this.setState({lists: data.results, loading: false})
+        this.setState({lists: data, loading: false})
     }
 
     render()
     {
         const listApi = this.state.lists;
-        var token = '';
+        var token = localStorage.getItem('token');
 
-        if(token === ''){
+        if(!token){
             return <Login/>
         }
 

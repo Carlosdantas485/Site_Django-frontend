@@ -3,12 +3,11 @@ import React from "react";
 export default class Login extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {username: '', password: ''};
+        this.state = {username: 'admin', password: 'Carlosdantas@100'};
     
         this.handleChangeUsername = this.handleChangeUsername.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
 
       }
     
@@ -21,7 +20,15 @@ export default class Login extends React.Component{
       }
 
       handleSubmit(event) {
-        alert('USERNAME:' + this.state.username + 'PASSWORD:' + this.state.password);
+        var url = 'http://127.0.0.1:8000/api-token-auth/'
+        const requestOption ={
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json'},
+          body: JSON.stringify({username: this.state.username, password: this.state.password})
+        };
+        fetch(url, requestOption)
+          .then(response => response.json())
+          .then(data => localStorage.setItem('token', data.token));
         event.preventDefault();
       }
     
