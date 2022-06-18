@@ -49,6 +49,7 @@ constructor(props) {
           <label>
             Name:
             <input type="text" value={this.state.username} onChange={this.handleChangeUsername} />
+            PASSWORD:
             <input type="password" value={this.state.password} onChange={this.handleChangePassword} />
           </label>
           <input type="submit" value="Submit" />
