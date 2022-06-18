@@ -59,7 +59,7 @@ constructor(props) {
       return (
         <div>
           <UserLists/>
-          <button onClick={()=>this.exit()}>SAIR</button>
+          <button onClick={()=>this.exit()}>LOGOUT</button>
         </div>
       )
   }
